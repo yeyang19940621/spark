@@ -24,6 +24,7 @@ if [ -z "${SPARK_HOME}" ]; then
   export SPARK_HOME="$(cd "`dirname "$0"`"/..; pwd)"
 fi
 
+# 设置 spark_conf_dir 目录
 export SPARK_CONF_DIR="${SPARK_CONF_DIR:-"${SPARK_HOME}/conf"}"
 # Add the PySpark classes to the PYTHONPATH:
 if [ -z "${PYSPARK_PYTHONPATH_SET}" ]; then

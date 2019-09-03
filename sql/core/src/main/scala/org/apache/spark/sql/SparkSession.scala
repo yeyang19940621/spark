@@ -83,6 +83,7 @@ class SparkSession private(
     @transient private val parentSessionState: Option[SessionState],
     @transient private[sql] val extensions: SparkSessionExtensions)
   extends Serializable with Closeable with Logging { self =>
+       // SharedState 一个保存不同Session的共享状态
 
   // The call site where this SparkSession was constructed.
   private val creationSite: CallSite = Utils.getCallSite()

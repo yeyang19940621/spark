@@ -48,6 +48,7 @@ if [ "$SPARK_MASTER_PORT" = "" ]; then
   SPARK_MASTER_PORT=7077
 fi
 
+# 设置 spark_master_host  根据不同系统不同方式设置localhost
 if [ "$SPARK_MASTER_HOST" = "" ]; then
   case `uname` in
       (SunOS)

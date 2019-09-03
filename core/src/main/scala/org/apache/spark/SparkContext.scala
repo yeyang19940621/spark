@@ -86,9 +86,9 @@ class SparkContext(config: SparkConf) extends Logging {
 
   val startTime = System.currentTimeMillis()
 
-  private[spark] val stopped: AtomicBoolean = new AtomicBoolean(false)
+  private[spark] val stopped: AtomicBoolean = new AtomicBoolean(false) //封装了true or false
 
-  private[spark] def assertNotStopped(): Unit = {
+  private[spark] def assertNotStopped(): Unit = { // 判断是否存在，不存在则报非法出错
     if (stopped.get()) {
       val activeContext = SparkContext.activeContext.get()
       val activeCreationSite =
@@ -189,25 +189,25 @@ class SparkContext(config: SparkConf) extends Logging {
    | constructor is still running is safe.                                                 |
    * ------------------------------------------------------------------------------------- */
 
-  private var _conf: SparkConf = _
+  private var _conf: SparkConf = _  // 重要 存储配置信息
   private var _eventLogDir: Option[URI] = None
   private var _eventLogCodec: Option[String] = None
-  private var _listenerBus: LiveListenerBus = _
-  private var _env: SparkEnv = _
-  private var _statusTracker: SparkStatusTracker = _
-  private var _progressBar: Option[ConsoleProgressBar] = None
-  private var _ui: Option[SparkUI] = None
-  private var _hadoopConfiguration: Configuration = _
+  private var _listenerBus: LiveListenerBus = _ //监听总线 负责给ui反馈信息
+  private var _env: SparkEnv = _ // 重要 运行时环境
+  private var _statusTracker: SparkStatusTracker = _ // spark状态追踪
+  private var _progressBar: Option[ConsoleProgressBar] = None //?
+  private var _ui: Option[SparkUI] = None // UI显示
+  private var _hadoopConfiguration: Configuration = _ // hadoop配置信息
   private var _executorMemory: Int = _
-  private var _schedulerBackend: SchedulerBackend = _
-  private var _taskScheduler: TaskScheduler = _
-  private var _heartbeatReceiver: RpcEndpointRef = _
-  @volatile private var _dagScheduler: DAGScheduler = _
+  private var _schedulerBackend: SchedulerBackend = _ //重要 调度器终端
+  private var _taskScheduler: TaskScheduler = _ // 任务调度器
+  private var _heartbeatReceiver: RpcEndpointRef = _ //?
+  @volatile private var _dagScheduler: DAGScheduler = _ //DAG调度器
   private var _applicationId: String = _
   private var _applicationAttemptId: Option[String] = None
   private var _eventLogger: Option[EventLoggingListener] = None
   private var _driverLogger: Option[DriverLogger] = None
-  private var _executorAllocationManager: Option[ExecutorAllocationManager] = None
+  private var _executorAllocationManager: Option[ExecutorAllocationManager] = None // 重要
   private var _cleaner: Option[ContextCleaner] = None
   private var _listenerBusStarted: Boolean = false
   private var _jars: Seq[String] = _

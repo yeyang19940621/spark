@@ -287,6 +287,7 @@ object SparkEnv extends Logging {
 
     val closureSerializer = new JavaSerializer(conf)
 
+
     def registerOrLookupEndpoint(
         name: String, endpointCreator: => RpcEndpoint):
       RpcEndpointRef = {

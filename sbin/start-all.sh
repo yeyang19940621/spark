@@ -21,6 +21,7 @@
 # Starts the master on this node.
 # Starts a worker on each node specified in conf/slaves
 
+-- 通过文件获取 spark_home
 if [ -z "${SPARK_HOME}" ]; then
   export SPARK_HOME="$(cd "`dirname "$0"`"/..; pwd)"
 fi
